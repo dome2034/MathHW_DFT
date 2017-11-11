@@ -1,7 +1,7 @@
 var fs = require('fs');
-
+let Input = fs.readFileSync('input.txt', 'utf8');
 DFT = new DFT();
-let d = [-10.2,4.3,5.1,-4.3,1.0,5.55]
+let d = Input.split("\r\n");
 let Result = DFT.calDFT(d)
 let imDisp
 for(let i=0;i<Result.length;i++){
