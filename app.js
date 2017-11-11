@@ -1,9 +1,11 @@
 var fs = require('fs');
+
 let Input = fs.readFileSync('input.txt', 'utf8');
 DFT = new DFT();
 let d = Input.split("\r\n");
-let Result = DFT.calDFT(d)
-let imDisp
+let Result = DFT.calDFT(d);
+let imDisp;
+let ResultString = "";
 for(let i=0;i<Result.length;i++){
     imDisp = "";
     if(Result[i].imagin == 0){
@@ -15,8 +17,16 @@ for(let i=0;i<Result.length;i++){
     else{
         imDisp = Result[i].imagin.toFixed(2) + "i";
     }
-    console.log("F(" + i + ") = " + Result[i].real.toFixed(2) + imDisp);
+    ResultString = ResultString + "F(" + i + ") = " + Result[i].real.toFixed(2) + imDisp + "\r\n";
 }
+
+fs.writeFile("output.txt", ResultString, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("Result file was saved!");
+});
 
 //---------------------------------------------- function ------------------------------------------------
 function DFT() {
